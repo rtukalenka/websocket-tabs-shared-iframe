@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket shared iframe</title>
+</head>
+<body>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    window.onmessage = function(e) {
+        console.log(e);
+    };
+
+    setTimeout(function() {
+        window.top.postMessage(JSON.stringify({type: 'message', data: {sender: 'index-iframe.html', date: +new Date()}}), '*');
+    }, 2500);
+});
+</script>
+<iframe src="http://localhost:3000" id="ws-iframe"></iframe>
+</body>
+</html>
